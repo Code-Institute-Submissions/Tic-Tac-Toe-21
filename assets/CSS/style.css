@@ -38,6 +38,7 @@
     max-width: 300px;
 }
 
+/*  styles the game tiles */
 .tile { 
     border: 1px solid #fff;
     cursor: pointer; 
@@ -47,4 +48,13 @@
     align-items: center;
     min-height: 100px;
     min-width: 100px;
+}
+
+/* player X and O color determinator */ 
+.playerX { 
+    color: #219EBC;
+}
+
+.playerO { 
+    color: #FB8500;
 }

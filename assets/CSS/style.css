@@ -58,3 +58,22 @@
 .playerO { 
     color: #FB8500;
 }
+
+.controls { 
+    display: flex; 
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+}
+
+#reset-btn { 
+    background-color: #fff;
+    color: #6930C3;
+    padding: 10px; 
+    border-radius: 10px;
+    border: none;
+    font-size: 20px; 
+    margin-left: 1em; 
+    cursor: pointer;
+}

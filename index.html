@@ -9,7 +9,35 @@
         <title>Tic-Tac-Toe</title>
     </head>
     <body>
-        <h1>Hi</h1>
+        <main class="background">
+            <section class="title">
+                <h1>Tic Tac Toe</h1>
+            </section>
+            
+            <!-- Show's which player is starting-->
+            <section class="display">
+                Player <span class="display-player playerX">X</span>'s turn
+            </section>
+
+            <!--frame for 3x3 playing board-->
+            <section class="container">
+                <div class="tile"></div>
+                <div class="tile"></div>
+                <div class="tile"></div>
+                <div class="tile"></div>
+                <div class="tile"></div>
+                <div class="tile"></div>
+                <div class="tile"></div>
+                <div class="tile"></div>
+                <div class="tile"></div>
+            </section>
+
+            <!-- sections for hidden elements manipulated by JavaScript excl. 'reset' button-->
+            <section class="display announcer hide"></section>
+            <section class="controls">
+                <button id="reset">Reset</button>
+            </section>
+        </main>
         
         <script src="assets/Javascript/script.js"></script>
     </body>

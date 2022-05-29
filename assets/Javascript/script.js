@@ -8,9 +8,9 @@
     let isGameActive = true;
 
 // declaring end game statments 
-    const PLAYERX_WON = 'PlayerX_Won';
-    const PLAYERO_WON = 'PlayerO_Won';
-    const TIE = 'It\'s a Tie';
+    const PLAYERX_WON = 'PlayerX_WON';
+    const PLAYERO_WON = 'PlayerO_WON';
+    const TIE = 'TIE';
 
     /* 
         Game board index:
@@ -33,7 +33,7 @@
     // runs loop to see if game winning conditions have been met
     function handleResultValidation() { 
         let roundWon = false; 
-        for (let i = 0; i <=7; i++) { 
+        for (let i = 0; i <= 7; i++) { 
             let winCondition = winningConditions[i];
             let a = board[winCondition[0]];
             let b = board[winCondition[1]];
@@ -52,8 +52,8 @@
         isGameActive = false;
         return;
     }
-    if (!board.includes(''));
-    announce(TIE)
+    if (!board.includes(''))
+    announce(TIE);
     }
 
     // announces which player has won
@@ -123,4 +123,5 @@
     tiles.forEach( (tile, index) => {
         tile.addEventListener('click', () => userAction(tile, index));
     });
+    
     resetButton.addEventListener('click', resetBoard);

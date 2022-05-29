@@ -30,7 +30,7 @@
 }
 
 /*  creates an equally sized 3x3 game board template using a grid */
-.game-board { 
+.container { 
     margin: 0 auto;
     display: grid;
     grid-template-columns: 33.3% 33.3% 33.3%;

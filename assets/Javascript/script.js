@@ -14,9 +14,9 @@ window.addEventListener('DOMContentLoaded', () => {
 });
    
 // declaring end game statments 
-    const PLAYERX_WON = 'PlayerX_Won'
-    const PLAYERO_WON = 'PlayerO_Won'
-    const TIE = 'It\'s a Tie'
+    const PLAYERX_WON = 'PlayerX_Won';
+    const PLAYERO_WON = 'PlayerO_Won';
+    const TIE = 'It\'s a Tie';
 
     /* 
         Game board index:
@@ -59,7 +59,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     if (!board.includes(''));
     announce(TIE);
-}
+    }
 
     // announces which player has won
     let announce = (type) => { 
@@ -75,6 +75,18 @@ window.addEventListener('DOMContentLoaded', () => {
         }
         announcer.classList.remove('hide');
     };
+
+    //checks whether a tile has a value or not
+    let isValidAction = (tile) => { 
+        if(tile.innerText === 'X' || tile.innerText === 'O') { 
+            return false;
+        }
+    }
+
+    //updates the board
+    let updateBoard = (index) => {
+        board[index] = currentPlayer;
+    }
 
     // changes player based on which turn has just been taken
     const CHANGE_PLAYER = () => { 
@@ -94,4 +106,20 @@ window.addEventListener('DOMContentLoaded', () => {
             handleResultValidation();
             changePlayer;
         }
+    }
+
+    let resetBoard = () => { 
+        board = ['', '', '','', '', '','', '', ''];
+        isGameActive = true; 
+        announcer.classList.add('hide');
+
+        if (currentPlayer === 'O') { 
+            changePlayer();
+        }
+
+        tiles.forEach(tile => { 
+            tile.innerText = '';
+            tile.classList.remove('playerX');
+            tile.classList.remove('playerO');
+        });
     }

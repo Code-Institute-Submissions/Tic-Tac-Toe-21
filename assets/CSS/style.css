@@ -5,20 +5,22 @@
 }
 
 .background { 
-    background-color: #6930C3;
+    background-image: linear-gradient(to top right, #6930C3, #a37de0);
     height: 100vh;
     padding-top: 1px; 
 }
 
 .title { 
     color: #fff; 
+    text-shadow: 5px 1px 15px black;
     text-align: center;
     font-size: 50px;
     margin-top: 5%;
 }
 
-.display { 
-    color: #fff; 
+.display{ 
+    color: #fff;
+    text-shadow: 2px 2px 15px black; 
     text-align: center;
     font-size: 25px; 
     margin-top: 1em;
@@ -70,10 +72,21 @@
 #reset-btn { 
     background-color: #fff;
     color: #6930C3;
+    box-shadow: 5px 10px 12px;
     padding: 10px; 
     border-radius: 10px;
     border: none;
     font-size: 20px; 
     margin-left: 1em; 
     cursor: pointer;
+}
+
+i { 
+    color:#6930C3;
+    font-size: 20px;
+    margin-left: 4px;
+}
+
+#reset-btn:hover { 
+    box-shadow: 5px 10px 5px;
 }

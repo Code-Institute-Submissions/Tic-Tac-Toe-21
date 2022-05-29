@@ -13,5 +13,44 @@ window.addEventListener('DOMContentLoaded', () => {
     const PLAYERO_Won = 'PlayerO_Won'
     const TIE = 'It\'s a Tie'
 
+    /* 
+        Game board index:
+        [0][1][2]
+        [3][4][5]
+        [6][7][8]
+    */
+
+    const winningConditions = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8]
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8], 
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
+
+    const changePlayer = () => { 
+        playerDisplay.classList.remove(`player${currentPlayer}`);
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        playerDisplay.innerText = currentPlayer;
+        playerDisplay.classList.add(`player${currentPlayer}`);
+    }
+    
+    // represents which user is currently playing. Checks whether game is active or not.
+    const userAction = (tile, index) => { 
+        if(isValidAction(tile) && isGameActive) { 
+            tile.innerText = currentPlayer;
+            tile.classList.add(`player${currentPlayer}`);
+            updateBoard(index);
+            handleResultValidation();
+            changePlayer;
+        }
+    }
+
+    tiles.forEach( (tile, index) => {
+        tile.addEventListener('click', () => userAction(tile, index));
+    });
     resetButton.addEventListener('click', resetBoard);
 });

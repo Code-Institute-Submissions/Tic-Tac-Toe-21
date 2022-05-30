@@ -49,7 +49,8 @@
     
     if (roundWon) { 
         announce(currentPlayer === 'X' ? PLAYERX_WON : PLAYERO_WON);
-        isGameActive = false;
+        isGameActive = false; 
+        winAudio.play();
         return;
     }
     if (!board.includes(''))
@@ -71,6 +72,7 @@
         announcer.classList.remove('hide');
     };
 
+    
     //checks whether a tile has a value or not
     let isValidAction = (tile) => { 
         if (tile.innerText === 'X' || tile.innerText === 'O'){ 
@@ -83,6 +85,10 @@
     //adds audible feedback when a tile is clicked
     let audio = new Audio
     audio.src = "assets/images/click.mp3"
+    audio.volume = 0.1;
+
+    let winAudio = new Audio ('assets/images/winningAudio.wav');
+    winAudio.volume = 0.3;
     
     //updates the board
     let updateBoard = (index) => {

@@ -4,10 +4,17 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="A simple Tic Tac Toe game to play with a friend">
+        <meta name="keywords" content="Game, Multiplayer, Tic-Tac-Toe">
+        
         <link rel="stylesheet" type="text/css" href="assets/CSS/style.css">
         <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
-        <script src="https://kit.fontawesome.com/16ee1fbf35.js" crossorigin="anonymous"></script>  
-        <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@1,900&display=swap" rel="stylesheet">
+        <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
+
+        <script src="https://kit.fontawesome.com/16ee1fbf35.js" crossorigin="anonymous"></script>
+ 
         <title>Tic-Tac-Toe</title>
     </head>
     <body>
@@ -22,7 +29,7 @@
             </section>
 
             <!--frame for 3x3 playing board-->
-            <section class="container" onclick="audio.play();">
+            <section aria-label="game-board" class="container" onclick="audio.play();">
                 <div class="tile"></div>
                 <div class="tile"></div>
                 <div class="tile"></div>

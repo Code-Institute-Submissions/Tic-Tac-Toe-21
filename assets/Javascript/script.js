@@ -81,9 +81,9 @@
     };
 
     //adds audible feedback when a tile is clicked
-    let audio = new Audio();
-    audio.src = "assets/images/click.mp3";
-
+    let audio = new Audio
+    audio.src = "assets/images/click.mp3"
+    
     //updates the board
     let updateBoard = (index) => {
         board[index] = currentPlayer;

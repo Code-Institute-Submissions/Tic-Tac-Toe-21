@@ -48,6 +48,7 @@
        			<li>having confetti or some visial celebration when a player wins show on screen</li>
           		<li>possibly animating the X's and O's on the board when they are placed, e.g. mimic the object being put down by a hand by having a slow 'slam/descent' animation placing it inside the tile.</li>
           		<li>option for an input form so the user can choose a nickname to associate with their X/O, or allow them to choose which side they'd like to be.</li>
+			<li>Allow for a single-player mode where the user plays against a computer. This could be done by manipulating the Math.floor.Math.random generator where it would randomly pull empty strings from the array and place a marker to indicate the computer's move.
        		</ul>
      </li>
 </ul>

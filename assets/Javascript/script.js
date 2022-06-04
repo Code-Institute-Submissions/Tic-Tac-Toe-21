@@ -1,138 +1,143 @@
-    let tiles = Array.from(document.querySelectorAll('.tile'));
-    let playerDisplay = document.querySelector('.display-player');
-    let resetButton = document.querySelector('#reset-btn');
-    let announcer = document.querySelector('.announcer');
+//adds audible feedback when a tile is clicked or game ends with a win/tie
+let audio = new Audio();
+audio.src = "assets/media/click.mp3";
+audio.volume = 0.1;
 
-    let board = ['', '', '', '', '', '', '', '', ''];
-    let currentPlayer = 'X';
-    let isGameActive = true;
+let winaudio = new Audio ('assets/media/winaudio.wav');
+winaudio.volume = 0.3;
+
+let tieaudio = new Audio ('assets/media/tieaudio.wav');
+tieaudio.volume = 0.3;  
+
+let tiles = Array.from(document.querySelectorAll('.tile'));
+let playerDisplay = document.querySelector('.display-player');
+
+let board = ['', '', '', '', '', '', '', '', ''];
+let currentPlayer = 'X';
+let isGameActive = true;
 
 // declaring end game statments 
-    const PLAYERX_WON = 'PlayerX_WON';
-    const PLAYERO_WON = 'PlayerO_WON';
-    const TIE = 'TIE';
+const PLAYERX_WON = 'PlayerX_WON';
+const PLAYERO_WON = 'PlayerO_WON';
+const TIE = 'TIE';
 
-    /* 
-        Game board index:
-        [0][1][2]
-        [3][4][5]
-        [6][7][8]
-    */
+/* 
+    Game board index:
+    [0][1][2]
+    [3][4][5]
+    [6][7][8]
+*/
 
-    let winningConditions = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8], 
-        [0, 4, 8],
-        [2, 4, 6]
-    ];
+let winningConditions = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8], 
+    [0, 4, 8],
+    [2, 4, 6]
+];
 
-    // runs loop to see if game winning conditions have been met
-    function handleResultValidation() { 
-        let roundWon = false; 
-        for (let i = 0; i <= 7; i++) { 
-            let winCondition = winningConditions[i];
-            let a = board[winCondition[0]];
-            let b = board[winCondition[1]];
-            let c = board[winCondition[2]];
-            if (a === '' || b === '' || c === '') { 
-                continue;
-            }
-            if (a === b && b === c) { 
-                roundWon = true;
-                break;
-            }
+// runs loop to see if game winning conditions have been met
+let roundWon = false; 
+let handleResultValidation = (roundWon) => { 
+    for (let i = 0; i <= 7; i++) { 
+        let winCondition = winningConditions[i];
+        let conditionOne = board[winCondition[0]];
+        let conditionTwo = board[winCondition[1]];
+        let conditionThree = board[winCondition[2]];
+        if (conditionOne === '' || conditionTwo === '' || conditionThree === '') { 
+            continue;
         }
+        if (conditionOne === conditionTwo && conditionTwo === conditionThree) { 
+            roundWon = true;
+            break;
+        }
+    }
+
+if (roundWon) { 
+    announce(currentPlayer === 'X' ? PLAYERX_WON : PLAYERO_WON);
+    isGameActive = false; 
+    winaudio.play();
+    return;
+}
+if (!board.includes(''))
+announce(TIE);
+}
+
+// announces which player has won
+let announce = (type) => {
+    let announcer = document.querySelector('.announcer');
+    switch(type){
+        case PLAYERO_WON:
+            announcer.innerHTML = 'Player <span class="playerO">O</span> Won!';
+            break;
+        case PLAYERX_WON:
+            announcer.innerHTML = 'Player <span class="playerX">X</span> Won!';
+            break;
+        case TIE:
+            announcer.innerText = 'Tie';
+            tieaudio.play();
+    }
+    announcer.classList.remove('hide');
+};
+
+
+//checks whether a tile has a value or not
+let isValidAction = (tile) => { 
+    if (tile.innerText === 'X' || tile.innerText === 'O'){ 
+        return false;
+    }
     
-    if (roundWon) { 
-        announce(currentPlayer === 'X' ? PLAYERX_WON : PLAYERO_WON);
-        isGameActive = false; 
-        winAudio.play();
-        return;
+    return true;
+};
+
+//updates the board
+let updateBoard = (index) => {
+    board[index] = currentPlayer;
+};
+
+// changes player based on which turn has just been taken
+let changePlayer = () => { 
+    playerDisplay.classList.remove(`player${currentPlayer}`);
+    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+    playerDisplay.innerText = currentPlayer;
+    playerDisplay.classList.add(`player${currentPlayer}`);
+};
+
+// represents which user is currently playing. Checks whether game is active or not.
+let userAction = (tile, index) => { 
+    if(isValidAction(tile) && isGameActive) { 
+        tile.innerText = currentPlayer;
+        tile.classList.add(`player${currentPlayer}`);
+        updateBoard(index);
+        handleResultValidation();
+        changePlayer();
     }
-    if (!board.includes(''))
-    announce(TIE);
-    }
+};
 
-    // announces which player has won
-    let announce = (type) => {
-        switch(type){
-            case PLAYERO_WON:
-                announcer.innerHTML = 'Player <span class="playerO">O</span> Won';
-                break;
-            case PLAYERX_WON:
-                announcer.innerHTML = 'Player <span class="playerX">X</span> Won';
-                break;
-            case TIE:
-                announcer.innerText = 'Tie';
-        }
-        announcer.classList.remove('hide');
-    };
+let resetBoard = () => { 
+    let announcer = document.querySelector('.announcer');
+    board = ['', '', '', '', '', '', '', '', ''];
+    isGameActive = true; 
+    announcer.classList.add('hide');
 
-    
-    //checks whether a tile has a value or not
-    let isValidAction = (tile) => { 
-        if (tile.innerText === 'X' || tile.innerText === 'O'){ 
-            return false;
-        }
-        
-        return true;
-    };
-
-    //adds audible feedback when a tile is clicked
-    let audio = new Audio
-    audio.src = "assets/images/click.mp3"
-    audio.volume = 0.1;
-
-    let winAudio = new Audio ('assets/images/winningAudio.wav');
-    winAudio.volume = 0.3;
-    
-    //updates the board
-    let updateBoard = (index) => {
-        board[index] = currentPlayer;
+    if (currentPlayer === 'O') { 
+        changePlayer();
     }
 
-    // changes player based on which turn has just been taken
-    let changePlayer = () => { 
-        playerDisplay.classList.remove(`player${currentPlayer}`);
-        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-        playerDisplay.innerText = currentPlayer;
-        playerDisplay.classList.add(`player${currentPlayer}`);
-    }
-
-    // represents which user is currently playing. Checks whether game is active or not.
-    let userAction = (tile, index) => { 
-        if(isValidAction(tile) && isGameActive) { 
-            tile.innerText = currentPlayer;
-            tile.classList.add(`player${currentPlayer}`);
-            updateBoard(index);
-            handleResultValidation();
-            changePlayer();
-        }
-    }
-
-    let resetBoard = () => { 
-        board = ['', '', '', '', '', '', '', '', ''];
-        isGameActive = true; 
-        announcer.classList.add('hide');
-
-        if (currentPlayer === 'O') { 
-            changePlayer();
-        }
-
-        tiles.forEach(tile => { 
-            tile.innerText = '';
-            tile.classList.remove('playerX');
-            tile.classList.remove('playerO');
-        });
-    }
-
-    tiles.forEach( (tile, index) => {
-        tile.addEventListener('click', () => userAction(tile, index));
+    tiles.forEach(tile => { 
+        tile.innerText = '';
+        tile.classList.remove('playerX');
+        tile.classList.remove('playerO');
     });
-    
-    resetButton.addEventListener('click', resetBoard);
+};
+
+tiles.forEach( (tile, index) => {
+    tile.addEventListener('click', () => userAction(tile, index));
+});
+
+let resetButton = document.querySelector('#reset-btn');
+resetButton.addEventListener('click', resetBoard);
 

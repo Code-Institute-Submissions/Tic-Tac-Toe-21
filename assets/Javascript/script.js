@@ -16,6 +16,20 @@ let board = ['', '', '', '', '', '', '', '', ''];
 let currentPlayer = 'X';
 let isGameActive = true;
 
+// auto show rule's popup menu on page load
+let popupRules = document.querySelector('.popup');
+let closeRules = document.querySelector('.close-rules')
+
+window.onload = function() { 
+    setTimeout(function() {
+        popupRules.style.display = 'block'
+    }, 2000);
+}
+
+closeRules.addEventListener('click', () => { 
+    popupRules.style.display = 'none';
+})
+
 // declaring end game statments 
 const PLAYERX_WON = 'PlayerX_WON';
 const PLAYERO_WON = 'PlayerO_WON';

@@ -18,7 +18,7 @@ let isGameActive = true;
 
 // auto show rule's popup menu on page load
 let popupRules = document.querySelector('.popup');
-let closeRules = document.querySelector('.close-rules')
+let closeRules = document.querySelector('#close-rules')
 
 window.onload = function() { 
     setTimeout(function() {

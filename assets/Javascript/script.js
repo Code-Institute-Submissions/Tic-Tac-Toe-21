@@ -9,6 +9,7 @@ winaudio.volume = 0.3;
 let tieaudio = new Audio ('assets/media/tieaudio.wav');
 tieaudio.volume = 0.3;  
 
+// variables
 let tiles = Array.from(document.querySelectorAll('.tile'));
 let playerDisplay = document.querySelector('.display-player');
 
@@ -18,17 +19,17 @@ let isGameActive = true;
 
 // auto show rule's popup menu on page load
 let popupRules = document.querySelector('.popup');
-let closeRules = document.querySelector('#close-rules')
+let closeRules = document.querySelector('#close-rules');
 
 window.onload = function() { 
     setTimeout(function() {
-        popupRules.style.display = 'block'
+        popupRules.style.display = 'block';
     }, 2000);
-}
+};
 
 closeRules.addEventListener('click', () => { 
     popupRules.style.display = 'none';
-})
+});
 
 // declaring end game statments 
 const PLAYERX_WON = 'PlayerX_WON';
@@ -53,8 +54,7 @@ let winningConditions = [
     [2, 4, 6]
 ];
 
-// runs loop to see if game winning conditions have been met
-let roundWon = false; 
+// runs loop to see if game winning conditions have been met 
 let handleResultValidation = (roundWon) => { 
     for (let i = 0; i <= 7; i++) { 
         let winCondition = winningConditions[i];
@@ -78,7 +78,7 @@ if (roundWon) {
 }
 if (!board.includes(''))
 announce(TIE);
-}
+};
 
 // announces which player has won
 let announce = (type) => {

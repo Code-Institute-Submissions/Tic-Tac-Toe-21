@@ -31,8 +31,8 @@
                         <h2>Rules:</h2>
                         <ul>
                             <li>Decide which player is going first and will be player 'X'</li>
-                            <li> Using the cursor, click on any blank tile to place your mark</li>
-                            <li>The game will show it is the second player's turn. They now place their mark on a blank tile</li>
+                            <li> Using the cursor, click on any blank tile to place your marker</li>
+                            <li>The game will show it is the second player's turn. They now place their marker on a blank tile</li>
                             <li>Keep taking turns, placing your tiles until one player has 3 markers of their own in a row, or until it is a draw</li> 
                             <li><em>Note:</em> A player wins by getting 3 of their tiles in a row, either horizontally, vertically, or diagonally</li>
                         </ul>
@@ -41,9 +41,9 @@
             </div>
 
             <!-- Show's which player is starting-->
-            <section class="display">
+            <div class="display">
                 Player <span class="display-player playerX">X</span>'s turn
-            </section>
+            </div>
 
             <!--frame for 3x3 playing board-->
             <section aria-label="game-board" class="container" onclick="audio.play();">
@@ -59,10 +59,10 @@
             </section>
 
             <!-- sections for hidden elements manipulated by JavaScript excl. 'reset' button-->
-            <section class="display announcer hide"></section>
-            <section class="controls">
+            <div class="display announcer hide"></div>
+            <div class="controls">
                 <button id="reset-btn">Reset<i class="fas fa-undo"></i></button>
-            </section>
+            </div>
         </main>
         
         <script src="assets/Javascript/script.js"></script>
